@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="expenseTrackerApp">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | XMeter</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-yellow-50">
+
+    <div class="flex flex-col md:flex-row min-h-screen">
+        <aside class="bg-white shadow-md w-full md:w-60">
+            <div class="flex flex-col justify-between h-full">
+                <div class="flex-grow">
+                    <div class="px-4 py-6 text-center border-b flex justify-center">
+                        <img src="./images/logo/2.png" alt="" width="150px">
+                    </div>
+                    <div class="p-4">
+                        <ul class="space-y-1">
+                            <li>
+                                <a href="javascript:void(0)"
+                                    class="flex items-center bg-orange-200 rounded-xl font-bold text-sm text-[#050A30] py-3 px-4 flex items-center">
+                                    <i class="fas fa-dashboard text-[#050A30] mr-3"></i>Dashbooard
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)"
+                                    class="flex bg-white hover:bg-yellow-50 rounded-xl font-bold text-sm text-gray-900 py-3 px-4 items-center">
+                                    <i class="fas fa-calendar-day text-[#050A30] mr-3"></i>Today's Activity
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)"
+                                    class="flex bg-white hover:bg-yellow-50 rounded-xl font-bold text-sm text-gray-900 py-3 px-4 items-center">
+                                    <i class="fas fa-bell text-[#050A30] mr-3"></i>Payment Remainder
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)"
+                                    class="flex bg-white hover:bg-yellow-50 rounded-xl font-bold text-sm text-gray-900 py-3 px-4 items-center">
+                                    <i class="fas fa-hand-holding-dollar text-[#050A30] mr-3"></i>Payment Split
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="javascript:void(0)"
+                                    class="flex bg-white hover:bg-yellow-50 rounded-xl font-bold text-sm text-gray-900 py-3 px-4 items-center">
+                                    <i class="fas fa-user text-[#050A30] mr-3"></i>My Profile
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)"
+                                    class="flex bg-white hover:bg-yellow-50 rounded-xl font-bold text-sm text-gray-900 py-3 px-4 items-center">
+                                    <i class="fas fa-history text-[#050A30] mr-3"></i>History
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="p-4">
+                    <a href="javascript:void(0)"
+                        class="flex bg-white hover:bg-yellow-50 rounded-xl font-bold text-sm text-[#F14624] py-3 px-4 items-center">
+                        <button type="button"
+                            class="inline-flex items-center justify-center h-9 px-4 rounded-xl transition flex justify-center items-center">
+                            <i class="fas fa-right-from-bracket text-[#F14624] mr-3"></i>Logout
+                        </button>
+                    </a>
+                </div>
+            </div>
+        </aside>
+
+        <main class="flex-1 overflow-auto">
+            <div class="px-6 py-8">
+                <div class="max-w-7xl mx-auto flex flex-col md:flex-row gap-4">
+                    <div class="flex-grow">
+                        <main class="max-h-screen overflow-auto">
+                            <div class="px-6">
+                                <div class="max-w-4xl mx-auto">
+                                    <div class="bg-white rounded-3xl p-8">
+                                        <div class="flex items-center justify-between">
+                                            <div class="flex items-center gap-x-2">
+                                                <h1 class="text-3xl font-bold">Dashboard</h1>
+                                            </div>
+                                            <div class="flex items-center gap-x-2">
+                                                <button type="button"
+                                                    class="inline-flex items-center justify-center h-9 px-3 rounded-xl border hover:border-gray-400 text-gray-800 hover:text-gray-900 transition"
+                                                    data-modal-open="budgetIncomeModal">
+                                                    <i class="fa-solid fa-plus-circle mr-3"></i> Add Income
+                                                </button>
+
+                                                <button type="button"
+                                                    class="inline-flex items-center justify-center h-9 px-5 rounded-xl bg-[#050A30] text-gray-300 hover:text-white text-sm font-semibold transition"
+                                                    data-modal-open="expenseModal">
+                                                    <i class="fa-solid fa-wallet mr-3"></i> Add Expense
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                        <hr class="my-10">
+
+                                        <div class="grid grid-cols-2 gap-x-10">
+                                            <div>
+                                                <h2 class="text-2xl font-bold mb-4">Stats</h2>
+
+                                                <div class="grid grid-cols-2 gap-4">
+                                                    <div class="col-span-2">
+                                                        <div class="p-4 bg-green-100 rounded-xl">
+                                                            <div class="font-bold text-xl text-gray-800 leading-none">
+                                                                Good day, Dhruvpuri
+                                                            </div>
+                                                            <div class="mt-5">
+                                                                <button type="button"
+                                                                    class="inline-flex items-center justify-center py-2 px-3 rounded-xl bg-white text-gray-800 hover:text-orange-500 text-sm font-semibold transition">
+                                                                    Start tracking
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="p-4 bg-yellow-100 rounded-xl text-gray-800">
+                                                        <div class="font-bold text-2xl leading-none">22,000</div>
+                                                        <div class="mt-2">Monthly Income</div>
+                                                    </div>
+                                                    <div class="p-4 bg-yellow-100 rounded-xl text-gray-800">
+                                                        <div class="font-bold text-2xl leading-none">12,000</div>
+                                                        <div class="mt-2">Expenses (Current)</div>
+                                                    </div>
+                                                    <div class="col-span-2">
+                                                        <div class="p-4 bg-purple-100 rounded-xl text-gray-800">
+                                                            <div class="font-bold text-xl leading-none">Your Payment Due
+                                                                List</div>
+                                                            <div class="mt-2">5 of 7 completed</div>
+                                                            <div class="mt-5">
+                                                                <button type="button"
+                                                                    class="inline-flex items-center justify-center py-2 px-3 rounded-xl text-gray-800 hover:text-orange-500 text-sm font-semibold transition border border-black">
+                                                                    Complete Due
+                                                                </button>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <h2 class="text-2xl font-bold mb-4">Your Recent Transactions</h2>
+
+                                                <div class="space-y-4">
+                                                    <div class="p-4 bg-white border rounded-xl text-gray-800 space-y-2">
+                                                        <div class="flex justify-between">
+                                                            <div class="text-gray-400 text-xs">Food</div>
+                                                            <div class="text-gray-400 text-xs">4h</div>
+                                                        </div>
+                                                        <a href="javascript:void(0)"
+                                                            class="font-bold hover:text-yellow-800">Vadapao and
+                                                            Mazza</a>
+                                                        <hr>
+                                                        <div class="text-sm text-gray-600 flex justify-between">
+                                                            <div>
+                                                                <i
+                                                                    class="fa-solid text-sm fa-indian-rupee-sign mr-2"></i>80.00
+                                                            </div>
+                                                            <div>
+                                                                <i
+                                                                    class="fa-solid text-sm fa-calendar mr-2"></i>19/11/2023
+                                                                <i class="fa-solid text-sm fa-clock mr-2 ml-2"></i>12:00
+                                                                AM
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="p-4 bg-white border rounded-xl text-gray-800 space-y-2">
+                                                        <div class="flex justify-between">
+                                                            <div class="text-gray-400 text-xs">Food</div>
+                                                            <div class="text-gray-400 text-xs">4h</div>
+                                                        </div>
+                                                        <a href="javascript:void(0)"
+                                                            class="font-bold hover:text-yellow-800">Vadapao and
+                                                            Mazza</a>
+                                                        <hr>
+                                                        <div class="text-sm text-gray-600 flex justify-between">
+                                                            <div>
+                                                                <i
+                                                                    class="fa-solid text-sm fa-indian-rupee-sign mr-2"></i>80.00
+                                                            </div>
+                                                            <div>
+                                                                <i
+                                                                    class="fa-solid text-sm fa-calendar mr-2"></i>19/11/2023
+                                                                <i class="fa-solid text-sm fa-clock mr-2 ml-2"></i>12:00
+                                                                AM
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="p-4 bg-white border rounded-xl text-gray-800 space-y-2">
+                                                        <div class="flex justify-between">
+                                                            <div class="text-gray-400 text-xs">Food</div>
+                                                            <div class="text-gray-400 text-xs">4h</div>
+                                                        </div>
+                                                        <a href="javascript:void(0)"
+                                                            class="font-bold hover:text-yellow-800">Vadapao and
+                                                            Mazza</a>
+                                                        <hr>
+                                                        <div class="text-sm text-gray-600 flex justify-between">
+                                                            <div>
+                                                                <i
+                                                                    class="fa-solid text-sm fa-indian-rupee-sign mr-2"></i>80.00
+                                                            </div>
+                                                            <div>
+                                                                <i
+                                                                    class="fa-solid text-sm fa-calendar mr-2"></i>19/11/2023
+                                                                <i class="fa-solid text-sm fa-clock mr-2 ml-2"></i>12:00
+                                                                AM
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+
+                            </div>
+                        </main>
+                        <p class="ml-8 mt-6 text-l text-gray-800 flex items-center">
+                            Check Today's Activity :
+                            <a href=""
+                                class="inline-block ml-2 text-orange-500 font-semibold py-2 rounded-lg transition duration-300">
+                                click here
+                            </a>
+                        </p>
+
+                    </div>
+                    <div class="w-full md:w-1/3">
+                        <h2 class="text-2xl font-bold mb-8 mt-4">Your Past Savings</h2>
+                        <div class="grid grid-cols-1 gap-4">
+                            <div class="p-6 bg-green-200 rounded-xl shadow-lg">
+                                <div class="flex items-center justify-between">
+                                    <div class="font-bold text-xl">March, 2021</div>
+                                    <i class="fas fa-wallet text-gray-700 text-lg"></i>
+                                </div>
+                                <div class="mt-4 text-gray-800 text-lg">₹15,000</div>
+                            </div>
+                            <div class="p-6 bg-blue-200 rounded-xl shadow-lg">
+                                <div class="flex items-center justify-between">
+                                    <div class="font-bold text-xl">February, 2021</div>
+                                    <i class="fas fa-wallet text-gray-700 text-lg"></i>
+                                </div>
+                                <div class="mt-4 text-gray-800 text-lg">₹18,000</div>
+                            </div>
+                            <div class="p-6 bg-red-200 rounded-xl shadow-lg">
+                                <div class="flex items-center justify-between">
+                                    <div class="font-bold text-xl">January, 2021</div>
+                                    <i class="fas fa-wallet text-gray-700 text-lg"></i>
+                                </div>
+                                <div class="mt-4 text-gray-800 text-lg">₹12,000</div>
+                            </div>
+                            <div class="p-6 bg-yellow-200 rounded-xl shadow-lg">
+                                <div class="flex items-center justify-between">
+                                    <div class="font-bold text-xl">December, 2020</div>
+                                    <i class="fas fa-wallet text-gray-700 text-lg"></i>
+                                </div>
+                                <div class="mt-4 text-gray-800 text-lg">₹20,000</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+    </main>
+    </div>
+    <div id="expenseModal"
+        class="hidden fixed inset-0 bg-gray-800 bg-opacity-50 overflow-y-auto h-full w-full flex items-center justify-center">
+        <div
+            class="relative mx-auto p-6 border w-full max-w-md shadow-lg rounded-lg bg-white bg-opacity-90 backdrop-filter backdrop-blur-lg border-gray-100">
+            <div class="text-center">
+                <div class="flex justify-end">
+                    <button id="closeModal" class="text-gray-400 hover:text-gray-500">
+                        <span class="fas fa-times text-2xl"></span>
+                    </button>
+                </div>
+                <h2 class="text-xl leading-6 font-medium text-[#050A30] mb-8">Add Expense</h2>
+                <div class="mt-2">
+                    <form id="addExpenseForm" class="space-y-4">
+                        <div class="relative">
+                            <span class="absolute inset-y-0 left-0 flex items-center pl-3">
+                                <i class="fas fa-comment-dollar text-gray-500"></i>
+                            </span>
+                            <input type="text" placeholder="Expense Name"
+                                class="pl-10 pr-3 py-2 border rounded-lg w-full bg-white bg-opacity-80 hover:bg-opacity-90 focus:bg-opacity-100 transition duration-200 ease-in-out">
+                        </div>
+                        <div class="relative">
+                            <span class="absolute inset-y-0 left-0 flex items-center pl-3">
+                                <i class="fas fa-wallet text-gray-500"></i>
+                            </span>
+                            <input type="number" placeholder="Amount"
+                                class="pl-10 pr-3 py-2 border rounded-lg w-full bg-white bg-opacity-80 hover:bg-opacity-90 focus:bg-opacity-100 transition duration-200 ease-in-out">
+                        </div>
+                        <div class="relative">
+                            <span class="absolute inset-y-0 left-0 flex items-center pl-3">
+                                <i class="fas fa-calendar-alt text-gray-500"></i>
+                            </span>
+                            <input type="datetime-local"
+                                class="pl-10 pr-3 py-2 border rounded-lg w-full bg-white bg-opacity-80 hover:bg-opacity-90 focus:bg-opacity-100 transition duration-200 ease-in-out">
+                        </div>
+                        <div class="relative">
+                            <span class="absolute inset-y-0 left-0 flex items-center pl-3">
+                                <i class="fas fa-tag text-gray-500"></i>
+                            </span>
+                            <input type="text" placeholder="Category"
+                                class="pl-10 pr-3 py-2 border rounded-lg w-full bg-white bg-opacity-80 hover:bg-opacity-90 focus:bg-opacity-100 transition duration-200 ease-in-out">
+                        </div>
+                        <select
+                            class="mb-3 px-3 py-2 border rounded-lg w-full bg-white bg-opacity-80 hover:bg-opacity-90 focus:bg-opacity-100 transition duration-200 ease-in-out">
+                            <option>Payment Method</option>
+                            <option>Cash</option>
+                            <option>UPI</option>
+                            <option>Card</option>
+                        </select>
+                        <button type="submit"
+                            class="inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-gradient-to-r from-orange-400 to-orange-600 text-base font-medium text-white hover:from-orange-500 hover:to-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 transition duration-300 ease-in-out">
+                            Submit
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="budgetIncomeModal"
+        class="hidden fixed inset-0 bg-gray-800 bg-opacity-50 overflow-y-auto h-full w-full flex items-center justify-center">
+        <div
+            class="relative mx-auto p-6 border w-full max-w-md shadow-lg rounded-lg bg-white bg-opacity-90 backdrop-filter backdrop-blur-lg border-gray-100">
+            <div class="text-center">
+                <div class="flex justify-end">
+                    <button id="closeBudgetIncomeModal" class="text-gray-400 hover:text-gray-500">
+                        <span class="fas fa-times text-2xl"></span>
+                    </button>
+                </div>
+                <h2 class="text-xl leading-6 font-medium mb-4 text-[#050A30]">Add Budget / Income</h2>
+                <div class="mt-2">
+                    <form id="addBudgetIncomeForm" class="space-y-4">
+                        <div class="relative text-gray-700">
+                            <span class="absolute inset-y-0 left-0 flex items-center pl-3">
+                                <i class="fas fa-piggy-bank text-gray-500"></i>
+                            </span>
+                            <input type="text" placeholder="Source"
+                                class="pl-10 pr-3 py-2 border rounded-lg w-full bg-white bg-opacity-20 hover:bg-opacity-30 focus:bg-opacity-40 transition duration-200 ease-in-out">
+                        </div>
+                        <div class="relative">
+                            <span class="absolute inset-y-0 left-0 flex items-center pl-3">
+                                <i class="fas fa-dollar-sign text-gray-500"></i>
+                            </span>
+                            <input type="number" placeholder="Amount"
+                                class="pl-10 pr-3 py-2 border rounded-lg w-full bg-white bg-opacity-20 hover:bg-opacity-30 focus:bg-opacity-40 transition duration-200 ease-in-out">
+                        </div>
+                        <div class="relative">
+                            <span class="absolute inset-y-0 left-0 flex items-center pl-3">
+                                <i class="fas fa-calendar-plus text-gray-500"></i>
+                            </span>
+                            <input type="date"
+                                class="pl-10 pr-3 py-2 border rounded-lg w-full bg-white bg-opacity-20 hover:bg-opacity-30 focus:bg-opacity-40 transition duration-200 ease-in-out">
+                        </div>
+                        <button type="submit"
+                            class="inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-gradient-to-r from-orange-400 to-orange-600 text-base font-medium text-white hover:from-orange-500 hover:to-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 transition duration-300 ease-in-out">
+                            Submit
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+<script>
+    // Open modal
+    document.querySelector('[data-modal-open="expenseModal"]').addEventListener('click', function () {
+        document.getElementById('expenseModal').classList.remove('hidden');
+    });
+
+    // Close modal
+    document.getElementById('closeModal').addEventListener('click', function () {
+        document.getElementById('expenseModal').classList.add('hidden');
+    });
+</script>
+<script>
+    // Open modal
+    document.querySelectorAll('[data-modal-open="budgetIncomeModal"]').forEach(trigger => {
+        trigger.addEventListener('click', function () {
+            document.getElementById('budgetIncomeModal').classList.remove('hidden');
+        });
+    });
+
+    // Close modal
+    document.getElementById('closeBudgetIncomeModal').addEventListener('click', function () {
+        document.getElementById('budgetIncomeModal').classList.add('hidden');
+    });
+</script>
+
+</html>
