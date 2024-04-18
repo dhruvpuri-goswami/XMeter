@@ -84,4 +84,38 @@ const login = async (req, res) => {
     }
 }
 
-module.exports = { signUp, login };
+const logout = (req, res) => {
+    res.statusCode = 200;
+    res.setHeader('Content-Type', 'application/json');
+    res.end(JSON.stringify({ success: true, message: 'User logged out' }));
+}
+
+
+const getUser = async(req, res) => {
+    // Extract the user from the request object
+    const userEmail = req.user.email;
+
+    //get the user from the database
+    const client = await connectToMongo();
+    const db = await client.db("xmeter");
+    const users = await db.collection("users");
+
+    const user = await users.findOne({ email: userEmail });
+
+    if(!user) {
+        res.statusCode = 401;
+        res.setHeader('Content-Type', 'application/json');
+        res.end(JSON.stringify({ success: false, message: 'User not found' }));
+        return;
+    }
+
+    // Send response
+    res.statusCode = 200;
+    res.setHeader('Content-Type', 'application/json');
+    res.end(JSON.stringify({ success: true, user: {
+        name: user.name,
+        email: user.email
+    } }));
+}
+
+module.exports = { signUp, login ,logout, getUser};

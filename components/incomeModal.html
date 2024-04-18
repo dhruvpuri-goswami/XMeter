@@ -1,0 +1,44 @@
+<div ng-show="showBudgetIncomeModal" class="fixed inset-0 bg-gray-800 bg-opacity-50 overflow-y-auto h-full w-full flex items-center justify-center">
+    <div class="relative mx-auto p-6 border w-full max-w-md shadow-lg rounded-lg bg-white bg-opacity-90 backdrop-filter backdrop-blur-lg border-gray-100">
+        <div class="text-center">
+            <div class="flex justify-end">
+                <button ng-click="closeIncomeModal()" class="text-gray-400 hover:text-gray-500">
+                    <span class="fas fa-times text-2xl"></span>
+                </button>
+            </div>
+            <h2 class="text-xl leading-6 font-medium mb-4 text-[#050A30]">Add Income</h2>
+            <div class="mt-2">
+                <form id="addIncomeForm" class="space-y-4" ng-submit="submitIncome($event)">
+                    <!-- Income form fields -->
+                    <div class="relative text-gray-700">
+                        <span class="absolute inset-y-0 left-0 flex items-center pl-3">
+                            <i class="fas fa-piggy-bank text-gray-500"></i>
+                        </span>
+                        <input type="text" placeholder="Source" ng-model="formData.source"
+                            class="pl-10 pr-3 py-2 border rounded-lg w-full bg-white bg-opacity-20 hover:bg-opacity-30 focus:bg-opacity-40 transition duration-200 ease-in-out">
+                    </div>
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-0 flex items-center pl-3">
+                            <i class="fas fa-dollar-sign text-gray-500"></i>
+                        </span>
+                        <input type="number" placeholder="Amount" ng-model="formData.amount"
+                            class="pl-10 pr-3 py-2 border rounded-lg w-full bg-white bg-opacity-20 hover:bg-opacity-30 focus:bg-opacity-40 transition duration-200 ease-in-out">
+                    </div>
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-0 flex items-center pl-3">
+                            <i class="fas fa-calendar-plus text-gray-500"></i>
+                        </span>
+                        <input type="date" ng-model="formData.date"
+                            class="pl-10 pr-3 py-2 border rounded-lg w-full bg-white bg-opacity-20 hover:bg-opacity-30 focus:bg-opacity-40 transition duration-200 ease-in-out"
+                            min="dateToday()"
+                            >
+                    </div>
+                    <button type="submit"
+                        class="inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-gradient-to-r from-orange-400 to-orange-600 text-base font-medium text-white hover:from-orange-500 hover:to-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 transition duration-300 ease-in-out">
+                        Submit
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

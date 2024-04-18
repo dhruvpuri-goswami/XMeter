@@ -13,16 +13,21 @@ function signinController($scope, $http) {
             $http({
                 method: 'POST',
                 url: 'http://localhost:3000/api/signin',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
                 data: JSON.stringify($scope.ctrl.user)
             }).then(function (response) {
                 console.log(response);
                 if (response.data.success) {
+                    localStorage.setItem('user', JSON.stringify(response.data.user));
                     window.location.href = '/dashboard.html';
                 } else {
                     alert('Signin failed');
                 }
             }).catch(function (error) {
                 console.error('Error occurred:', error);
+                alert('Signin failed: '+ error.data.message || 'Server error occurred');
             });
         } else {
             // Form is invalid, handle validation errors
