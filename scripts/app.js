@@ -1,4 +1,4 @@
-const app = angular.module('expenseTrackerApp', []).run(function ($rootScope, $http) {
+const app = angular.module('expenseTrackerApp', ['ngRoute']).run(async function ($rootScope, $http) {
     $rootScope.showExpenseModal = false;
     $rootScope.showBudgetIncomeModal = false;
     $rootScope.openExpenseModal = function () {
@@ -133,6 +133,49 @@ const app = angular.module('expenseTrackerApp', []).run(function ($rootScope, $h
         });
     };
 
+
+    $rootScope.lastMonthIncome  = 0;
+    $rootScope.getMonthIncome = function (month) {
+        month = month || 1;
+        const user = JSON.parse(localStorage.getItem('user'));
+        $http({
+            method: 'POST',
+            url: `http://localhost:3000/api/get-monthly-income/${parseInt(month)}`,
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            data: {
+                email: user.email
+            }
+        }).then(function successCallback(response) {
+            console.log(response);
+            $rootScope.lastMonthIncome = response.data.income[0].total;
+        }).catch(function errorCallback(response) {
+            console.error(response);
+        });
+    }
+
+    $rootScope.getMonthIncome();
     $rootScope.getExpenses();
     $rootScope.getMonthlyExpenses();
+});
+
+
+
+
+
+
+
+
+app.config(function($routeProvider) {
+    $routeProvider
+        .when('/', {
+            templateUrl: '../components/dashboardCmp.html', 
+        })
+        .when('/today', {
+            templateUrl: '../today.html', 
+        })
+        .otherwise({
+            redirectTo: '/' // Redirect to dashboard if no matching route found
+        });
 });
