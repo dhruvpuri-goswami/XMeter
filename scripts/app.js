@@ -173,7 +173,25 @@ app.config(function($routeProvider) {
             templateUrl: '../components/dashboardCmp.html', 
         })
         .when('/today', {
-            templateUrl: '../today.html', 
+            templateUrl: '../components/today.html', 
+        })
+        .when('/payment-remainder',{
+            templateUrl: '../components/paymentRemainder.html',
+            controller : 'ReminderController',
+            controllerUrl : '../controllers/PaymentRemainderController.js'
+        })
+        .when('/recieved-remainder',{
+            templateUrl: '../components/recievedRemainder.html',
+            controller : 'ReminderController',
+            controllerUrl : '../controllers/PaymentRemainderController.js'
+        })
+        .when('/sent-remainder',{
+            templateUrl: '../components/sentRemainder.html',
+            controller : 'ReminderController',
+            controllerUrl : '../controllers/PaymentRemainderController.js'
+        })
+        .when('/my-profile',{
+            templateUrl: '../components/myProfile.html',
         })
         .otherwise({
             redirectTo: '/' // Redirect to dashboard if no matching route found
