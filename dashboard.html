@@ -12,10 +12,11 @@
     <script src="controllers/MainController.js"></script>
     <script src="controllers/ExpenseController.js"></script>
     <script src="controllers/IncomeController.js"></script>
+    <script src="controllers/PaymentRemainderController.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" rel="stylesheet">
 </head>
 
-<body class="bg-yellow-50 h-screen w-screen">
+<body class="bg-yellow-50 h-screen w-screen overflow-x-hidden overflow-y-hidden">
     <div ng-controller="MainController" class="flex flex-col md:flex-row min-h-screen w-full">
         <div  ng-include="'components/sidebar.html'"></div>
         <div class="w-full"  ng-view></div>
