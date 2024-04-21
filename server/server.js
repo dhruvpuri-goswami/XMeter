@@ -3,7 +3,7 @@ const port = 3000;
 const connectToMongo = require('./db');
 const {signUp,login, logout} = require('./routes/auth');
 const { addExpense, getExpenses, getMonthlyExpenses } = require('./routes/expense');
-const { addIncome } = require('./routes/income');
+const { addIncome, getMonthlyIncome, getPreviousMonthIncome } = require('./routes/income');
 
 
 const server = http.createServer(async (req, res) => {
@@ -55,7 +55,10 @@ const server = http.createServer(async (req, res) => {
             } else if(url.startsWith('/api/get-monthly-expenses')) {
                 // Handle get monthly expenses API
                 getMonthlyExpenses(req, res);
-            } else if (url === '/') {
+            } else if (url.startsWith('/api/get-monthly-income')) {
+                getPreviousMonthIncome(req, res);
+            } 
+            else if (url === '/') {
                 res.writeHead(200);
                 res.end('Hello World');
             } else {

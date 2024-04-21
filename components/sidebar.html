@@ -7,38 +7,39 @@
             <div class="p-4">
                 <ul class="space-y-1">
                     <li>
-                        <a href="javascript:void(0)" class="flex items-center bg-orange-200 rounded-xl font-bold text-sm text-[#050A30] py-3 px-4 flex items-center">
+                        <a href="#!" ng-class="{'bg-orange-200': isActiveLink('')}" class="flex items-center rounded-xl font-bold text-sm py-3 px-4 flex items-center">
                             <i class="fas fa-dashboard text-[#050A30] mr-3"></i>Dashbooard
-                        </a>
+                        </a>                        
                     </li>
                     <li>
-                        <a href="/today.html"
-                            class="flex bg-white hover:bg-yellow-50 rounded-xl font-bold text-sm text-gray-900 py-3 px-4 items-center">
+                        <a href="#!today"
+                            ng-class="{'bg-orange-200': isActiveLink('today')}"
+                            class="flex hover:bg-yellow-50 rounded-xl font-bold text-sm text-gray-900 py-3 px-4 items-center">
                             <i class="fas fa-calendar-day text-[#050A30] mr-3"></i>Today's Activity
                         </a>
                     </li>
                     <li>
                         <a href="javascript:void(0)"
-                            class="flex bg-white hover:bg-yellow-50 rounded-xl font-bold text-sm text-gray-900 py-3 px-4 items-center">
+                            class="flex hover:bg-yellow-50 rounded-xl font-bold text-sm text-gray-900 py-3 px-4 items-center">
                             <i class="fas fa-bell text-[#050A30] mr-3"></i>Payment Remainder
                         </a>
                     </li>
                     <li>
                         <a href="javascript:void(0)"
-                            class="flex bg-white hover:bg-yellow-50 rounded-xl font-bold text-sm text-gray-900 py-3 px-4 items-center">
+                            class="flex hover:bg-yellow-50 rounded-xl font-bold text-sm text-gray-900 py-3 px-4 items-center">
                             <i class="fas fa-hand-holding-dollar text-[#050A30] mr-3"></i>Payment Split
                         </a>
                     </li>
 
                     <li>
                         <a href="javascript:void(0)"
-                            class="flex bg-white hover:bg-yellow-50 rounded-xl font-bold text-sm text-gray-900 py-3 px-4 items-center">
+                            class="flex hover:bg-yellow-50 rounded-xl font-bold text-sm text-gray-900 py-3 px-4 items-center">
                             <i class="fas fa-user text-[#050A30] mr-3"></i>My Profile
                         </a>
                     </li>
                     <li>
                         <a href="javascript:void(0)"
-                            class="flex bg-white hover:bg-yellow-50 rounded-xl font-bold text-sm text-gray-900 py-3 px-4 items-center">
+                            class="flex hover:bg-yellow-50 rounded-xl font-bold text-sm text-gray-900 py-3 px-4 items-center">
                             <i class="fas fa-history text-[#050A30] mr-3"></i>History
                         </a>
                     </li>

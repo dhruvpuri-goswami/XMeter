@@ -101,11 +101,18 @@ const getMonthlyExpenses = async (req, res) => {
             const months = parseInt(req.url.split('/')[3]) || 1; // Number of past months
             const { email } = req.body;
 
+            if(!email){
+                res.writeHead(400);
+                res.end(JSON.stringify({ success: false, message: 'Invalid request' }));
+                return;
+            }
+
             let result = await expenses.aggregate([
                 // Match documents from the last 4 months
                 {
                   $match: {
-                    insertedAt: { $gte: new Date(new Date().setMonth(new Date().getMonth() - 4)) }
+                    email: email,
+                    insertedAt: { $gte: new Date(new Date().setMonth(new Date().getMonth() - months)) }
                   }
                 },
                 {

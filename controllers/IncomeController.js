@@ -1,4 +1,4 @@
-angular.module('expenseTrackerApp').controller('IncomeController', function($scope,$http) {
+angular.module('expenseTrackerApp').controller('IncomeController', function($scope,$rootScope,$http) {
     // Income controller logic
     $scope.formData = {
         source: '',
@@ -41,7 +41,7 @@ angular.module('expenseTrackerApp').controller('IncomeController', function($sco
                 date: ''
             };
             console.log(response);
-            $scope.getIncomes();
+            $rootScope.getMonthIncome();
         }).catch(function errorCallback(response) {
             console.error(response);
         });
