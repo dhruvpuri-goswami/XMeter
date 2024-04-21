@@ -11,17 +11,74 @@
 </head>
 
 <body class="bg-yellow-50">
-    <nav class="p-4 mt-4">
+    <nav class="p-4">
         <div class="container mx-auto flex justify-between items-center">
-                <img src="./images/logo/2.png" alt="" width="150px">
-          <div class="flex space-x-4">
-            <a href="#" class="text-gray-600 hover:text-blue-500 transition duration-300">Home</a>
-            <a href="#" class="text-gray-600 hover:text-blue-500 transition duration-300">About</a>
-            <a href="#" class="text-gray-600 hover:text-blue-500 transition duration-300">Services</a>
-            <a href="#" class="bg-orange-200 text-[#050A30] hover:text-blue-500 transition duration-300">Login / Register</a>
-          </div>
+            <img src="./images/logo/2.png" alt="XMeter Logo" width="150px">
+            <div class="flex items-center space-x-4 hidden md:block">
+                <a href="#" class="text-gray-600 hover:text-[#F14624] transition duration-300">Home</a>
+                <a href="#" class="text-gray-600 hover:text-[#F14624] transition duration-300">About</a>
+                <a href="#" class="text-gray-600 hover:text-[#F14624] transition duration-300">Services</a>
+                <a href="#" class="bg-orange-200 text-[#050A30] px-3 py-2 rounded-xl transition duration-300">Login / Register</a>
+            </div>
         </div>
-      </nav>
+    </nav>
+
+    <section class="text-center mx-5 px-5 rounded-xl my-5 sm:mx-10 py-10 sm:py-16 bg-green-100">
+        <h2 class="text-xl sm:text-4xl font-bold mb-6">Manage Your Expenses Like Never Before!</h2>
+        <p class="text-sm sm:text-xl mb-6">XMeter helps you keep track of your expenses, split payments and much more.</p>
+        <button class="bg-[#F14624] text-white px-6 py-3 rounded-lg shadow hover:bg-green-600 transition">Get Started</button>
+    </section>
+
+<section class="py-5 md:py-10">
+    <div class="container mx-auto">
+        <h2 class="text-3xl font-bold text-center mb-10">Features</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-10 sm:m-0 m-5">
+            <div class="text-center bg-rose-100 p-6 rounded-3xl shadow-lg hover:shadow-xl transition-all duration-300">
+                <i class="fas fa-cogs fa-3x text-blue-500 mb-4"></i>
+                <h3 class="text-xl font-semibold mb-2">Expense Manager</h3>
+                <p>Track your daily expenses efficiently and accurately.</p>
+            </div>
+            <div class="text-center bg-yellow-100 p-6 rounded-3xl shadow-lg hover:shadow-xl transition-all duration-300">
+                <i class="fas fa-heart fa-3x text-red-500 mb-4"></i>
+                <h3 class="text-xl font-semibold mb-2">Payment Reminder</h3>
+                <p>Never miss a payment with our timely reminders.</p>
+            </div>
+            <div class="text-center bg-blue-100 p-6 rounded-3xl shadow-lg hover:shadow-xl transition-all duration-300">
+                <i class="fas fa-check-circle fa-3x text-green-500 mb-4"></i>
+                <h3 class="text-xl font-semibold mb-2">Payment Split</h3>
+                <p>Splitting bills with friends is now just a few clicks away.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mx-5 rounded-xl my-5 py-16 bg-gradient-to-r from-lime-100 via-violet-100 to-orange-100 sm:mx-10 px-5 sm:px-0">
+    <div class="container mx-auto text-center">
+        <h2 class="text-3xl font-bold mb-6">About Us</h2>
+        <p class="text-xl md:text-mb mb-16 mx-auto max-w-4xl" style="line-height: 2;">XMeter is designed to simplify your financial life. Built with the latest technology, our tool helps you manage, track, and analyze your personal and shared expenses effortlessly.</p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+            <div class="transition duration-500 p-6 rounded-3xl ease-in-out transform hover:-translate-y-1 hover:scale-105">
+                <i class="fas fa-balance-scale-right fa-3x mb-4"></i>
+                <h3 class="text-xl font-semibold">Balanced Spending</h3>
+                <p class="mt-3" style="line-height: 2;">Get insights into your spending habits to balance your budget better.</p>
+            </div>
+            <div class="transition duration-500 p-6 rounded-3xl ease-in-out transform hover:-translate-y-1 hover:scale-105">
+                <i class="fas fa-users fa-3x mb-4"></i>
+                <h3 class="text-xl font-semibold">Community Driven</h3>
+                <p class="mt-3" style="line-height: 2;">Join a community of users who are optimizing their financial life just like you.</p>
+            </div>
+            <div class="transition duration-500 p-6 rounded-3xl ease-in-out transform hover:-translate-y-1 hover:scale-105">
+                <i class="fas fa-shield-alt fa-3x mb-4"></i>
+                <h3 class="text-xl font-semibold">Secure and Private</h3>
+                <p class="mt-3" style="line-height: 2;">Your data is protected with the highest security standards.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <footer class="bg-orange-200 text-black text-center p-6">
+        <p>© 2024 XMeter Expense Tracker. All rights reserved.</p>
+    </footer>
 </body>
 
 </html>
