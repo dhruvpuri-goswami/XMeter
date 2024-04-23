@@ -1,5 +1,7 @@
 const bcrypt = require('bcrypt');
 const connectToMongo = require('../db');
+const jwt = require('jsonwebtoken');
+const secretJWT = '623262f1c9c9490399bd13d4868aa832'
 
 const signUp = async (req, res) => {
     try {
@@ -23,17 +25,24 @@ const signUp = async (req, res) => {
         const db = await client.db("xmeter");
         const result = await db.collection("users").insertOne(newUser);
 
-        if(!result.acknowledged) {
+        if (!result.acknowledged) {
             throw new Error('Failed to insert user');
         }
-        
+
+        //generate token
+        const token = jwt.sign({ email: email, name: name }, secretJWT, { expiresIn: '36d' })
+
         // Send response
-        res.statusCode = 200;
+        res.statusCode = 201;
         res.setHeader('Content-Type', 'application/json');
-        res.end(JSON.stringify({ success: true, user:{
-            name: name,
-            email: email
-        } }));
+        res.end(JSON.stringify({
+            success: true,
+            user: {
+                name: name,
+                email: email
+            },
+            token: token
+        }));
     } catch (err) {
         console.error('Error occurred:', err);
         res.writeHead(500);
@@ -53,7 +62,7 @@ const login = async (req, res) => {
         const db = await client.db("xmeter");
         const user = await db.collection("users").findOne({ email: email });
 
-        if(!user) {
+        if (!user) {
             res.statusCode = 401;
             res.setHeader('Content-Type', 'application/json');
             res.end(JSON.stringify({ success: false, message: 'User not found' }));
@@ -63,20 +72,26 @@ const login = async (req, res) => {
         // Compare the password
         const match = await bcrypt.compare(password, user.password);
 
-        if(!match) {
+        if (!match) {
             res.statusCode = 401;
             res.setHeader('Content-Type', 'application/json');
             res.end(JSON.stringify({ success: false, message: 'Invalid password' }));
             return;
         }
 
+        const token = jwt.sign({ email: user.email, name: user.name }, secretJWT, { expiresIn: '36d' })
+
         // Send response
         res.statusCode = 200;
         res.setHeader('Content-Type', 'application/json');
-        res.end(JSON.stringify({ success: true, user: {
-            name: user.name,
-            email: user.email
-        } }));
+        res.end(JSON.stringify({
+            success: true,
+            user: {
+                name: user.name,
+                email: user.email,
+            },
+            token: token
+        }));
     } catch (err) {
         console.error('Error occurred:', err);
         res.writeHead(500);
@@ -91,7 +106,7 @@ const logout = (req, res) => {
 }
 
 
-const getUser = async(req, res) => {
+const getUser = async (req, res) => {
     // Extract the user from the request object
     const userEmail = req.user.email;
 
@@ -102,7 +117,7 @@ const getUser = async(req, res) => {
 
     const user = await users.findOne({ email: userEmail });
 
-    if(!user) {
+    if (!user) {
         res.statusCode = 401;
         res.setHeader('Content-Type', 'application/json');
         res.end(JSON.stringify({ success: false, message: 'User not found' }));
@@ -112,10 +127,12 @@ const getUser = async(req, res) => {
     // Send response
     res.statusCode = 200;
     res.setHeader('Content-Type', 'application/json');
-    res.end(JSON.stringify({ success: true, user: {
-        name: user.name,
-        email: user.email
-    } }));
+    res.end(JSON.stringify({
+        success: true, user: {
+            name: user.name,
+            email: user.email
+        }
+    }));
 }
 
-module.exports = { signUp, login ,logout, getUser};
+module.exports = { signUp, login, logout, getUser };

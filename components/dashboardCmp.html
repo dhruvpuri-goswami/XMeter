@@ -38,7 +38,7 @@
                                             <div class="col-span-2">
                                                 <div class="p-4 bg-green-100 rounded-xl">
                                                     <div class="font-bold text-xl text-gray-800 leading-none">
-                                                        Good day, {{user.name}}!
+                                                        Good day, {{user.name.split(' ')[0]}}!
                                                     </div>
                                                     <div class="mt-5">
                                                         <button type="button"
@@ -53,7 +53,7 @@
                                                 <div class="mt-2">Monthly Income</div>
                                             </div>
                                             <div class="p-4 bg-yellow-100 rounded-xl text-gray-800">
-                                                <div class="font-bold text-2xl leading-none">12,000</div>
+                                                <div class="font-bold text-2xl leading-none">{{currentExpenses}}</div>
                                                 <div class="mt-2">Expenses (Current)</div>
                                             </div>
                                             <div class="col-span-2">
@@ -95,8 +95,6 @@
                                                         <i class="fa-solid text-sm fa-clock mr-2 ml-2"></i>{{
                                                             getTime(expence.insertedAt)
                                                         }}
-
-
                                                     </div>
                                                 </div>
                                             </div>
@@ -121,7 +119,7 @@
             </div>
             <div class="w-full md:w-1/3">
                 <h2 class="text-2xl font-bold mb-8 mt-4">Your Past Savings</h2>
-                <div class="grid grid-cols-1 gap-4">
+                <div class="grid grid-cols-1 gap-4" ng-show="monthlyExpenses.length > 0">
                     <div class="p-6 bg-green-200 rounded-xl shadow-lg">
                         <div class="flex items-center justify-between">
                             <div class="font-bold text-xl">{{getMonthYear(monthlyExpenses[0]._id)}}</div>
@@ -129,21 +127,21 @@
                         </div>
                         <div class="mt-4 text-gray-800 text-lg">₹{{monthlyExpenses[0].total}}</div>
                     </div>
-                    <div class="p-6 bg-blue-200 rounded-xl shadow-lg">
+                    <div class="p-6 bg-blue-200 rounded-xl shadow-lg" ng-show="monthlyExpenses.length > 1">
                         <div class="flex items-center justify-between">
                             <div class="font-bold text-xl">{{getMonthYear(monthlyExpenses[1]._id)}}</div>
                             <i class="fas fa-wallet text-gray-700 text-lg"></i>
                         </div>
                         <div class="mt-4 text-gray-800 text-lg">₹{{monthlyExpenses[1].total}}</div>
                     </div>
-                    <div class="p-6 bg-red-200 rounded-xl shadow-lg">
+                    <div class="p-6 bg-red-200 rounded-xl shadow-lg" ng-show="monthlyExpenses.length > 2">
                         <div class="flex items-center justify-between">
                             <div class="font-bold text-xl">{{getMonthYear(monthlyExpenses[2]._id)}}</div>
                             <i class="fas fa-wallet text-gray-700 text-lg"></i>
                         </div>
                         <div class="mt-4 text-gray-800 text-lg">₹{{monthlyExpenses[2].total}}</div>
                     </div>
-                    <div class="p-6 bg-yellow-200 rounded-xl shadow-lg">
+                    <div class="p-6 bg-yellow-200 rounded-xl shadow-lg" ng-show="monthlyExpenses.length > 3">
                         <div class="flex items-center justify-between">
                             <div class="font-bold text-xl">{{getMonthYear(monthlyExpenses[3]._id)}}</div>
                             <i class="fas fa-wallet text-gray-700 text-lg"></i>

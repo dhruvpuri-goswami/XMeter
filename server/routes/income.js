@@ -9,7 +9,8 @@ const addIncome = async(req,res) =>{
         const income = await db.collection('income');
 
         //extract the request body
-        const {email, incomeName, amount, source, date} = req.body;
+        const { incomeName, amount, source, date} = req.body;
+        const email = req.user.email;
 
         //validate the request
         if(!email || !incomeName || !amount || !source){
@@ -62,7 +63,8 @@ const getMonthlyIncome = async(req,res) => {
         const income = await db.collection('income');
 
         //extract the request body
-        const {email, month, year} = req.body;
+        const { month, year} = req.body;
+        const email = req.user.email;
 
         //validate the request
         if(!email || !month || !year){
@@ -97,7 +99,7 @@ const getPreviousMonthIncome = async(req,res) => {
             const income = await db.collection('income');
 
             const months = parseInt(req.url.split('/')[3]) || 1; // Number of past months
-            const { email } = req.body;
+            const { email } = req.user;
 
             let result = await income.aggregate([
                 {
@@ -130,4 +132,42 @@ const getPreviousMonthIncome = async(req,res) => {
     }
 }
 
-module.exports = {addIncome, getMonthlyIncome, getPreviousMonthIncome}; 
+const getDateIncome = async(req,res) =>{
+    try{
+        if(req.method === 'POST'){
+            const client = await connectToMongo();
+            const db = await client.db('xmeter');
+            const income = await db.collection('income');
+
+            const { date} = req.body;
+            const email = req.user.email;
+
+            if(!email || !date){
+                res.writeHead(400);
+                res.end(JSON.stringify({ success: false, message: 'Invalid request' }));
+                return;
+            }
+
+            //get all incomes for the date
+            const result = await income.find({
+                email: email,
+                insertedAt: {
+                    $gte: new Date(new Date(date).setDate(new Date(date).getDate() - 1)),
+                    $lt: new Date(new Date(date).setDate(new Date(date).getDate()))
+                }
+            }).toArray();
+
+            res.writeHead(200);
+            res.end(JSON.stringify({ success: true, income: result }));
+        }else{
+            res.writeHead(405);
+            res.end(JSON.stringify({ success: false, message: 'Method Not Allowed' }));
+        }
+    }catch(err){
+        console.error('Error occurred:', err);
+        res.writeHead(500);
+        res.end(JSON.stringify({ success: false, message: 'Internal Server Error' }));
+    }
+}
+
+module.exports = {addIncome, getMonthlyIncome, getPreviousMonthIncome, getDateIncome}; 

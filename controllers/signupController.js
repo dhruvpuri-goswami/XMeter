@@ -28,6 +28,7 @@ function signupController($scope,$http) {
                     localStorage.setItem('user', JSON.stringify(response.data.user));
                     document.cookie = 'user=' + JSON.stringify(response.data.user) + '; path=/' + '; max-age=' + 60 * 60 * 24 * 7 + ';' + 'SameSite=None; Secure' + ';' + 'expires=' + new Date(new Date().getTime() + 60 * 60 * 24 * 7 * 1000).toUTCString() + ';';
                     window.location.href = '/dashboard.html';
+                    localStorage.setItem('xmeterToken', response.data.token);
                 } else {
                     alert('Signup failed');
                 }

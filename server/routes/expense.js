@@ -6,10 +6,10 @@ const addExpense = async (req, res) => {
             const client = await connectToMongo();
             const db = await client.db('xmeter');
             const expense = await db.collection('expenses');
-            const { email, expenseName, amount, category, paymentMethod, date} = req.body;
+            const { expenseName, amount, category, paymentMethod, date} = req.body;
 
             //validate the request
-            if (!email || !expenseName || !amount || !category || !paymentMethod) {
+            if (!expenseName || !amount || !category || !paymentMethod) {
                 res.writeHead(400);
                 res.end(JSON.stringify({ success: false, message: 'Invalid request' }));
                 return;
@@ -30,7 +30,7 @@ const addExpense = async (req, res) => {
 
             //insert the expense
             const result = await expense.insertOne({
-                email: email,
+                email: req.user.email,
                 expenseName: expenseName,
                 amount: amount,
                 category: category,
@@ -68,13 +68,11 @@ const getExpenses = async (req, res) => {
 
             const number = parseInt(req.url.split('/')[3]) || -1;
 
-            const { email } = req.body;
-
             let result;
             if (number === -1) {
-                result = await expenses.find({ email }).sort({insertedAt: -1}).toArray();
+                result = await expenses.find({ email: req.user.email }).sort({insertedAt: -1}).toArray();
             } else {
-                result = await expenses.find({ email }).sort({insertedAt: -1}).limit(number).toArray();
+                result = await expenses.find({ email: req.user.email }).sort({insertedAt: -1}).limit(number).toArray();
             }
             res.writeHead(200);
             res.end(JSON.stringify({ success: true, expenses: result }));
@@ -99,19 +97,12 @@ const getMonthlyExpenses = async (req, res) => {
             const expenses = await db.collection('expenses');
 
             const months = parseInt(req.url.split('/')[3]) || 1; // Number of past months
-            const { email } = req.body;
-
-            if(!email){
-                res.writeHead(400);
-                res.end(JSON.stringify({ success: false, message: 'Invalid request' }));
-                return;
-            }
 
             let result = await expenses.aggregate([
                 // Match documents from the last 4 months
                 {
                   $match: {
-                    email: email,
+                    email: req.user.email,
                     insertedAt: { $gte: new Date(new Date().setMonth(new Date().getMonth() - months)) }
                   }
                 },
@@ -144,4 +135,44 @@ const getMonthlyExpenses = async (req, res) => {
 
 }
 
-module.exports = { addExpense, getExpenses, getMonthlyExpenses }
+
+// get all expenses for the date
+const getDateExpenses = async (req, res) => {
+    try {
+        if (req.method === "POST") {
+            const client = await connectToMongo();
+            const db = await client.db('xmeter');
+            const expenses = await db.collection('expenses');
+
+            const { date } = req.body;
+            const email = req.user.email;
+
+            if (!email || !date) {
+                res.writeHead(400);
+                res.end(JSON.stringify({ success: false, message: 'Invalid request' }));
+                return;
+            }
+
+            //get all expenses for the date do not compare time
+            const result = await expenses.find({
+                email: email,
+                insertedAt: {
+                    $gte: new Date(new Date(date).setDate(new Date(date).getDate() - 1)),
+                    $lt: new Date(new Date(date).setDate(new Date(date).getDate()))
+                }
+            }).toArray();
+
+            res.writeHead(200);
+            res.end(JSON.stringify({ success: true, expenses: result }));
+        } else {
+            res.writeHead(405);
+            res.end(JSON.stringify({ success: false, message: 'Method Not Allowed' }));
+        }
+    } catch (err) {
+        console.error('Error occurred:', err);
+        res.writeHead(500);
+        res.end(JSON.stringify({ success: false, message: 'Internal Server Error' }));
+    }
+}
+
+module.exports = { addExpense, getExpenses, getMonthlyExpenses, getDateExpenses }

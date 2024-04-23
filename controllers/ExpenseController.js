@@ -28,7 +28,7 @@ angular.module('expenseTrackerApp').controller('ExpenseController', function($sc
                 'Content-Type': 'application/json'
             },
             data: {
-                email: user.email,
+                token: $rootScope.token,
                 expenseName: $scope.formData.name,
                 amount: $scope.formData.amount,
                 category: $scope.formData.category,

@@ -27,7 +27,7 @@ angular.module('expenseTrackerApp').controller('IncomeController', function($sco
                 'Content-Type': 'application/json'
             },
             data: {
-                email: user.email,
+                token: $rootScope.token,
                 incomeName: $scope.formData.source,
                 amount: $scope.formData.amount,
                 source: $scope.formData.source,

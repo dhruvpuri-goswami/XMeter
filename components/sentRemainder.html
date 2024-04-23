@@ -1,4 +1,4 @@
-    <div class="flex flex-col md:flex-row min-h-screen bg-yellow-50" ng-controller="ReminderController">
+    <div class="flex flex-col md:flex-row min-h-screen bg-yellow-50" ng-controller="sentRemainderController">
         <main class="mt-5">
             <div class="py-8">
                 <div class="px-8">
@@ -32,32 +32,18 @@
                                     </tr>
                                 </thead>
                                 <tbody class="bg-white divide-y divide-gray-200">
-                                    <tr>
+                                    <tr ng-repeat="remainders in sentRemainders">
                                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                                            Lunch at Cafe
+                                            {{remainders.subject}}
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                            $45.00
+                                            ₹{{" "}}{{remainders.amount}}
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                            12/04/2024
+                                            {{getRemainderFormattedDate(remainders.date)}}
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                            Alice
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                                            Movie Tickets
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                            $30.00
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                            12/04/2024
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                            Rohan
+                                            {{remainders.sentTo}}
                                         </td>
                                     </tr>
                                 </tbody>

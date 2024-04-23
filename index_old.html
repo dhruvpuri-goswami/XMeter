@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTML Landing Page</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* Add your custom styles here */
+    body {
+      font-family: Arial, sans-serif;
+    }
+    .hero-section {
+      background-color: #3498db;
+      color: #fff;
+      padding: 100px 0;
+      text-align: center;
+    }
+    .hero-section h1 {
+      font-size: 48px;
+      margin-bottom: 20px;
+    }
+    .hero-section p {
+      font-size: 24px;
+      margin-bottom: 40px;
+    }
+    .hero-section .btn {
+      font-size: 18px;
+      padding: 10px 20px;
+    }
+    .features-section {
+      background-color: #f2f2f2;
+      padding: 50px 0;
+      text-align: center;
+    }
+    .features-section h2 {
+      color: #333;
+      font-size: 36px;
+      margin-bottom: 40px;
+    }
+    .features-section .col-md-4 {
+      margin-bottom: 30px;
+    }
+    .features-section i {
+      color: #3498db;
+      margin-bottom: 20px;
+    }
+    .features-section h3 {
+      color: #333;
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+    .features-section p {
+      color: #666;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Services</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Contact</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="container">
+      <h1>Welcome to XMeter</h1>
+      <p>Every penny counts</p>
+      <a href="signin.html" class="btn btn-primary btn-lg">signin</a>
+      <a href="signup.html" class="btn btn-secondary btn-lg">Signup</a>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features-section">
+    <div class="container">
+      <h2>Features of XMeter</h2><br>
+      <div class="row">
+        <div class="col-md-4">
+          <i class="fas fa-cogs fa-3x"></i>
+          <h3>Expense manager</h3>
+          <p>Track your daily expenses.</p>
+        </div>
+        <div class="col-md-4">
+          <i class="fas fa-heart fa-3x"></i>
+          <h3>Payment Remainder</h3>
+          <p>It reminds you of any due payments</p>
+        </div>
+        <div class="col-md-4">
+          <i class="fas fa-check-circle fa-3x"></i>
+          <h3>Payment Split</h3>
+          <p>You can easily split payment among your friends or colleagues</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bootstrap Library (for styling) -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>

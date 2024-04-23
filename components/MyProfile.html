@@ -1,4 +1,4 @@
-<div class="flex flex-col md:flex-row min-h-screen bg-yellow-50">
+<div class="flex flex-col md:flex-row min-h-screen bg-yellow-50" ng-controller="ProfileController">
 
     <main class="mt-5">
         <div class="py-8">
@@ -12,20 +12,21 @@
                         </div>
                         <hr class="my-10">
                         <div class="bg-yellow-100 p-8 rounded-xl">
-                            <p><b>Name : </b> {{user.name}}</p>
+                            <p><b>Name : </b> Dhruvpuri Goswami</p>
                         </div>
                         <div class="bg-green-100 p-8 rounded-xl mt-4">
-                            <p><b>Email : </b> {{user.email}}</p>
+                            <p><b>Email : </b> dhruv@gmail.com</p>
 
                         </div>
                         <div class="mt-4 p-2">
                             <a href="javascript:void(0)"
                                 class="flex bg-white rounded-xl font-bold text-sm text-[#F14624] py-3 items-center">
-                                <button type="button"
+                                <button type="button" ng-click="logout()"
                                     class="inline-flex items-center justify-center h-9 px-4 rounded-xl transition flex justify-center items-center">
                                     <i class="fas fa-right-from-bracket text-[#F14624] mr-3"></i>Logout
                                 </button>
                             </a>
+
                         </div>
                     </div>
                 </div>

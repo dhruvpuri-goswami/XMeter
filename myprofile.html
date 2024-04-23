@@ -1,111 +1,97 @@
-<!DOCTYPE html>
-<html lang="en" ng-app="expenseTrackerApp">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Payment Remainder | XMeter</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" rel="stylesheet">
-</head>
-
-<body class="bg-yellow-50">
-    <div class="flex flex-col md:flex-row min-h-screen">
-        <aside class="bg-white shadow-md w-full md:w-60">
-            <div class="flex flex-col justify-between h-full">
-                <div class="flex-grow">
-                    <div class="px-4 py-6 text-center border-b flex justify-center">
-                        <img src="./images/logo/2.png" alt="" width="150px">
-                    </div>
-                    <div class="p-4">
-                        <ul class="space-y-1">
-                            <li>
-                                <a href="javascript:void(0)"
-                                    class="flex items-center bg-orange-200 rounded-xl font-bold text-sm text-[#050A30] py-3 px-4 flex items-center">
-                                    <i class="fas fa-dashboard text-[#050A30] mr-3"></i>Dashbooard
-                                </a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)"
-                                    class="flex bg-white hover:bg-yellow-50 rounded-xl font-bold text-sm text-gray-900 py-3 px-4 items-center">
-                                    <i class="fas fa-calendar-day text-[#050A30] mr-3"></i>Today's Activity
-                                </a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)"
-                                    class="flex bg-white hover:bg-yellow-50 rounded-xl font-bold text-sm text-gray-900 py-3 px-4 items-center">
-                                    <i class="fas fa-bell text-[#050A30] mr-3"></i>Payment Remainder
-                                </a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)"
-                                    class="flex bg-white hover:bg-yellow-50 rounded-xl font-bold text-sm text-gray-900 py-3 px-4 items-center">
-                                    <i class="fas fa-hand-holding-dollar text-[#050A30] mr-3"></i>Payment Split
-                                </a>
-                            </li>
-
-                            <li>
-                                <a href="javascript:void(0)"
-                                    class="flex bg-white hover:bg-yellow-50 rounded-xl font-bold text-sm text-gray-900 py-3 px-4 items-center">
-                                    <i class="fas fa-user text-[#050A30] mr-3"></i>My Profile
-                                </a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)"
-                                    class="flex bg-white hover:bg-yellow-50 rounded-xl font-bold text-sm text-gray-900 py-3 px-4 items-center">
-                                    <i class="fas fa-history text-[#050A30] mr-3"></i>History
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
+<div class="flex flex-col md:flex-row min-h-screen bg-yellow-50" ng-controller="">
+    <aside class="bg-white shadow-md w-full md:w-60">
+        <div class="flex flex-col justify-between h-full">
+            <div class="flex-grow">
+                <div class="px-4 py-6 text-center border-b flex justify-center">
+                    <img src="./images/logo/2.png" alt="" width="150px">
                 </div>
                 <div class="p-4">
-                    <a href="javascript:void(0)"
-                        class="flex bg-white hover:bg-yellow-50 rounded-xl font-bold text-sm text-[#F14624] py-3 px-4 items-center">
-                        <button type="button"
-                            class="inline-flex items-center justify-center h-9 px-4 rounded-xl transition flex justify-center items-center">
-                            <i class="fas fa-right-from-bracket text-[#F14624] mr-3"></i>Logout
-                        </button>
-                    </a>
+                    <ul class="space-y-1">
+                        <li>
+                            <a href="javascript:void(0)"
+                                class="flex items-center bg-orange-200 rounded-xl font-bold text-sm text-[#050A30] py-3 px-4 flex items-center">
+                                <i class="fas fa-dashboard text-[#050A30] mr-3"></i>Dashbooard
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)"
+                                class="flex bg-white hover:bg-yellow-50 rounded-xl font-bold text-sm text-gray-900 py-3 px-4 items-center">
+                                <i class="fas fa-calendar-day text-[#050A30] mr-3"></i>Today's Activity
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)"
+                                class="flex bg-white hover:bg-yellow-50 rounded-xl font-bold text-sm text-gray-900 py-3 px-4 items-center">
+                                <i class="fas fa-bell text-[#050A30] mr-3"></i>Payment Remainder
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)"
+                                class="flex bg-white hover:bg-yellow-50 rounded-xl font-bold text-sm text-gray-900 py-3 px-4 items-center">
+                                <i class="fas fa-hand-holding-dollar text-[#050A30] mr-3"></i>Payment Split
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="javascript:void(0)"
+                                class="flex bg-white hover:bg-yellow-50 rounded-xl font-bold text-sm text-gray-900 py-3 px-4 items-center">
+                                <i class="fas fa-user text-[#050A30] mr-3"></i>My Profile
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)"
+                                class="flex bg-white hover:bg-yellow-50 rounded-xl font-bold text-sm text-gray-900 py-3 px-4 items-center">
+                                <i class="fas fa-history text-[#050A30] mr-3"></i>History
+                            </a>
+                        </li>
+                    </ul>
                 </div>
             </div>
-        </aside>
+            <div class="p-4">
+                <button type="button"
+                    class="flex bg-white hover:bg-yellow-50 rounded-xl font-bold text-sm text-[#F14624] py-3 px-4 items-center"
+                    ng-click="logout()"
+                    >
+                    <span
+                        class="inline-flex items-center justify-center h-9 px-4 rounded-xl transition flex justify-center items-center">
+                        <i class="fas fa-right-from-bracket text-[#F14624] mr-3"></i>Logout
+                    </span>
+                </button>
+            </div>
+        </div>
+    </aside>
 
-        <main class="mt-5">
-            <div class="py-8">
-                <div class="px-8">
-                    <div class="mx-auto">
-                        <div class="bg-white rounded-3xl p-8" style="width: 1100px;">
-                            <div class="flex items-center justify-between">
-                                <div class="flex items-center gap-x-2">
-                                    <h1 class="text-3xl font-bold">My Profile</h1>
-                                </div>
+    <main class="mt-5">
+        <div class="py-8">
+            <div class="px-8">
+                <div class="mx-auto">
+                    <div class="bg-white rounded-3xl p-8" style="width: 1100px;">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-x-2">
+                                <h1 class="text-3xl font-bold">My Profile</h1>
                             </div>
-                            <hr class="my-10">
-                            <div class="bg-yellow-100 p-8 rounded-xl">
-                                <p><b>Name : </b> Dhruvpuri Goswami</p>
-                            </div>
-                            <div class="bg-green-100 p-8 rounded-xl mt-4">
-                                <p><b>Email : </b> dhruv@gmail.com</p>
+                        </div>
+                        <hr class="my-10">
+                        <div class="bg-yellow-100 p-8 rounded-xl">
+                            <p><b>Name : </b> Dhruvpuri Goswami</p>
+                        </div>
+                        <div class="bg-green-100 p-8 rounded-xl mt-4">
+                            <p><b>Email : </b> dhruv@gmail.com</p>
 
-                            </div>
-                            <div class="mt-4 p-2">
-                                <a href="javascript:void(0)"
-                                    class="flex bg-white rounded-xl font-bold text-sm text-[#F14624] py-3 items-center">
-                                    <button type="button"
-                                        class="inline-flex items-center justify-center h-9 px-4 rounded-xl transition flex justify-center items-center">
-                                        <i class="fas fa-right-from-bracket text-[#F14624] mr-3"></i>Logout
-                                    </button>
-                                </a>
+                        </div>
+                        <div class="mt-4 p-2">
+                            <a href="javascript:void(0)"
+                                class="flex bg-white rounded-xl font-bold text-sm text-[#F14624] py-3 items-center">
+                                <button type="button" ng-click="logout()"
+                                    class="inline-flex items-center justify-center h-9 px-4 rounded-xl transition flex justify-center items-center">
+                                    <i class="fas fa-right-from-bracket text-[#F14624] mr-3"></i>Logout
+                                </button>
+                            </a>
 
-                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </main>
-    </div>
-</body>
-
-</html>
+        </div>
+    </main>
+</div>

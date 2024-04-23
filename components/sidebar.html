@@ -19,8 +19,8 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#!payment-remainder"
-                        ng-class="{'bg-orange-200': isActiveLink('payment-remainder')}"
+                        <a href="#!payment-Remainder"
+                        ng-class="{'bg-orange-200': isActiveLink('payment-Remainder')}"
                             class="flex hover:bg-yellow-50 rounded-xl font-bold text-sm text-gray-900 py-3 px-4 items-center">
                             <i class="fas fa-bell text-[#050A30] mr-3"></i>Payment Remainder
                         </a>
@@ -34,6 +34,7 @@
 
                     <li>
                         <a href="#!my-profile"
+                            ng-class="{'bg-orange-200': isActiveLink('my-profile')}"
                             class="flex hover:bg-yellow-50 rounded-xl font-bold text-sm text-gray-900 py-3 px-4 items-center">
                             <i class="fas fa-user text-[#050A30] mr-3"></i>My Profile
                         </a>
@@ -49,7 +50,9 @@
         </div>
         <div class="p-4">
             <a href="javascript:void(0)" class="flex bg-white hover:bg-yellow-50 rounded-xl font-bold text-sm text-[#F14624] py-3 px-4 items-center">
-                <button type="button" class="inline-flex items-center justify-center h-9 px-4 rounded-xl transition flex justify-center items-center">
+                <button type="button" class="inline-flex items-center justify-center h-9 px-4 rounded-xl transition flex justify-center items-center"
+                ng-click="logout()"
+                >
                     <i class="fas fa-right-from-bracket text-[#F14624] mr-3"></i>Logout
                 </button>
             </a>

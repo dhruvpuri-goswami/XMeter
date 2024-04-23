@@ -21,6 +21,7 @@ function signinController($scope, $http) {
                 console.log(response);
                 if (response.data.success) {
                     localStorage.setItem('user', JSON.stringify(response.data.user));
+                    localStorage.setItem('xmeterToken', response.data.token);
                     window.location.href = '/dashboard.html';
                 } else {
                     alert('Signin failed');

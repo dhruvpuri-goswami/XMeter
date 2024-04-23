@@ -1,6 +1,12 @@
 const app = angular.module('expenseTrackerApp', ['ngRoute']).run(async function ($rootScope, $http) {
+    $rootScope.hostUrl = 'http://127.0.0.1:5500/';
     $rootScope.showExpenseModal = false;
     $rootScope.showBudgetIncomeModal = false;
+    $rootScope.token = localStorage.getItem('xmeterToken');
+    if(!$rootScope.token && localStorage.getItem('xmeterToken') === null){
+        location.href = $rootScope.hostUrl + 'signin.html';
+        location.refresh();
+    }
     $rootScope.openExpenseModal = function () {
         console.log('Opening expense modal');
         $rootScope.showExpenseModal = true;
@@ -19,6 +25,12 @@ const app = angular.module('expenseTrackerApp', ['ngRoute']).run(async function 
         return new Date().toISOString().split("T")[0];
     }
 
+    //get date and convert it into formate "dd/mm/yyyy"
+    $rootScope.getRemainderFormattedDate = function (date) {
+        const d = new Date(date);
+        return `${d.getDate()}/${d.getMonth() + 1}/${d.getFullYear()}`;
+    }
+
 
     // set user data
     $rootScope.user = JSON.parse(localStorage.getItem('user'));
@@ -33,18 +45,18 @@ const app = angular.module('expenseTrackerApp', ['ngRoute']).run(async function 
             method: 'POST',
             url: 'http://localhost:3000/api/get-expenses/3',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
             },
             data: {
-                email: user.email
+                token: $rootScope.token
             }
         }).then(function successCallback(response) {
             $rootScope.recentExpenses = response.data.expenses;
-            console.log(response);
         }).catch(function errorCallback(response) {
             console.error(response);
         });
     };
+
 
 
     //get time on AM and PM
@@ -123,11 +135,11 @@ const app = angular.module('expenseTrackerApp', ['ngRoute']).run(async function 
                 'Content-Type': 'application/json'
             },
             data: {
-                email: user.email
+                token: $rootScope.token
             }
         }).then(function successCallback(response) {
             $rootScope.monthlyExpenses = response.data.expenses;
-            console.log(response);
+            $rootScope.currentExpenses = response.data.expenses.pop().total;
         }).catch(function errorCallback(response) {
             console.error(response);
         });
@@ -145,7 +157,7 @@ const app = angular.module('expenseTrackerApp', ['ngRoute']).run(async function 
                 'Content-Type': 'application/json'
             },
             data: {
-                email: user.email
+                token: $rootScope.token
             }
         }).then(function successCallback(response) {
             console.log(response);
@@ -155,13 +167,30 @@ const app = angular.module('expenseTrackerApp', ['ngRoute']).run(async function 
         });
     }
 
+    $rootScope.logout = function () {
+        localStorage.removeItem('user');
+        //send logout request
+        $http({
+            method: 'POST',
+            url: 'http://localhost:3000/api/logout',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            data: JSON.stringify({ token: $rootScope.token || localStorage.getItem('xmeterToken')})
+        }).then(function successCallback(response) {
+            localStorage.removeItem('xmeterToken');
+            localStorage.removeItem('user');
+            window.location.href = `${$rootScope.hostUrl}/signin.html`;
+            console.log(response);
+        }).catch(function errorCallback(response) {
+            console.error(response);
+        });
+    };
+
     $rootScope.getMonthIncome();
     $rootScope.getExpenses();
     $rootScope.getMonthlyExpenses();
 });
-
-
-
 
 
 
@@ -174,24 +203,28 @@ app.config(function($routeProvider) {
         })
         .when('/today', {
             templateUrl: '../components/today.html', 
+            controller : 'TodayController',
+            controllerUrl : '../controllers/TodayController.js'
         })
-        .when('/payment-remainder',{
+        .when('/payment-Remainder',{
             templateUrl: '../components/paymentRemainder.html',
-            controller : 'ReminderController',
+            controller : 'RemainderController',
             controllerUrl : '../controllers/PaymentRemainderController.js'
         })
-        .when('/recieved-remainder',{
+        .when('/recieved-Remainder',{
             templateUrl: '../components/recievedRemainder.html',
-            controller : 'ReminderController',
-            controllerUrl : '../controllers/PaymentRemainderController.js'
+            controller : 'receivedRemainderController',
+            controllerUrl : '../controllers/receivedRemainderController.js'
         })
-        .when('/sent-remainder',{
+        .when('/sent-Remainder',{
             templateUrl: '../components/sentRemainder.html',
-            controller : 'ReminderController',
-            controllerUrl : '../controllers/PaymentRemainderController.js'
+            controller : 'sentRemainderController',
+            controllerUrl : '../controllers/sentRemainderController.js'
         })
         .when('/my-profile',{
             templateUrl: '../components/myProfile.html',
+            controller : 'ProfileController',
+            controllerUrl : '../controllers/ProfileController.js'
         })
         .otherwise({
             redirectTo: '/' // Redirect to dashboard if no matching route found
