@@ -221,6 +221,9 @@ app.config(function($routeProvider) {
             controller : 'sentRemainderController',
             controllerUrl : '../controllers/sentRemainderController.js'
         })
+        .when('/payment-split',{
+            templateUrl: '../components/paymentSplit.html'
+        })
         .when('/my-profile',{
             templateUrl: '../components/myProfile.html',
             controller : 'ProfileController',
