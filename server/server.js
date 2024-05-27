@@ -1,6 +1,5 @@
 const http = require("http");
 const port = 3000;
-const connectToMongo = require("./db");
 const { signUp, login, logout } = require("./routes/auth");
 const {
   addExpense,
@@ -16,6 +15,7 @@ const {
 } = require("./routes/income");
 const decodeToken = require("./utils/jwtDecode");
 const { addRemainder, getRemainders, getSentRemainders } = require("./routes/payment-remainder");
+require('dotenv').config();
 
 const server = http.createServer(async (req, res) => {
   // Set CORS headers
@@ -92,10 +92,10 @@ const server = http.createServer(async (req, res) => {
         getDateExpenses(req, res);
       } else if (url === "/api/add-remainder") {
         addRemainder(req, res);
-      } else if(url.startsWith("/api/get-received-remainders/")){
-        getRemainders(req,res);
-      } else if(url.startsWith("/api/get-sent-remainders/")){
-        getSentRemainders(req,res);
+      } else if (url.startsWith("/api/get-received-remainders/")) {
+        getRemainders(req, res);
+      } else if (url.startsWith("/api/get-sent-remainders/")) {
+        getSentRemainders(req, res);
       } else if (url === "/") {
         res.writeHead(200);
         res.end("Hello World");
