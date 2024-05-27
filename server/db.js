@@ -1,8 +1,10 @@
 // Import the MongoDB client and the ServerApiVersion from the MongoDB Node.js driver
 const { MongoClient, ServerApiVersion } = require('mongodb');
+// Import the dotenv module
+require('dotenv').config();
 
 // Connection URI
-const uri = 'mongodb+srv://arjavprajapati12:3Qct4Y8r15tGrux2@cluster0.nwtwjll.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0'; // Change the URI as per your MongoDB configuration
+const uri = process.env.MONGO_URI; // Change the URI as per your MongoDB configuration
 
 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
@@ -21,7 +23,7 @@ async function connectToMongo() {
     // Send a ping to confirm a successful connection
     console.log("Pinged your deployment. You successfully connected to MongoDB!");
     return mongoClient;
-  } catch(err) {
+  } catch (err) {
     // Ensures that the client will close when you finish/error
     await mongoClient.close();
   }
