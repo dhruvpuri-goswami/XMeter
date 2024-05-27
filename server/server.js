@@ -1,6 +1,5 @@
 const http = require("http");
 const port = 3000;
-const connectToMongo = require("./db");
 const { signUp, login, logout } = require("./routes/auth");
 const {
   addExpense,
@@ -17,10 +16,6 @@ const {
 const decodeToken = require("./utils/jwtDecode");
 const { addRemainder, getRemainders, getSentRemainders } = require("./routes/payment-remainder");
 require('dotenv').config();
-
-// use environment variable for port
-// const port = process.env.PORT || 3000;
-console.log(process.env);
 
 const server = http.createServer(async (req, res) => {
   // Set CORS headers

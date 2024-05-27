@@ -2,7 +2,6 @@
 const { MongoClient, ServerApiVersion } = require('mongodb');
 // Import the dotenv module
 require('dotenv').config();
-
 // Connection URI
 const uri = process.env.MONGO_URI; // Change the URI as per your MongoDB configuration
 
